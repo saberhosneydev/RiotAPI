@@ -1,4 +1,17 @@
 {
+    "name": "shd/riotapi",
+    "description": "A php wrapper around RiotAPI using libcurl",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "saberhosneydev",
+            "email": "ssaber277@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0"
+    },
     "autoload": {
         "psr-4": {
             "SHD\\": "app/"
