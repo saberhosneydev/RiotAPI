@@ -3,6 +3,7 @@
     "description": "A php wrapper around RiotAPI using libcurl",
     "license": "MIT",
     "type": "library",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "saberhosneydev"
