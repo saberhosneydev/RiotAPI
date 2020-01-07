@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace SHD;
 
-class endPoint
+class League
 {
     public function getSummonerInfo($name)
     {
@@ -10,7 +10,7 @@ class endPoint
         $ch = curl_init();
         $decodedName = \curl_escape($ch, $name);
         //if the name has special character replace it with unicode version
-        $url = $this->server.$this->summonerAPI.$decodedName."?api_key=".$this->api_key;
+        $url = "https://".Config::SERVERS[Config::$SERVER_NAME].Config::summonerAPI.$decodedName."?api_key=".Config::API_KEY;
         //grab URL and pass it to the variable.
         curl_setopt($ch, CURLOPT_URL, $url);
         // Return Page contents.
@@ -18,13 +18,14 @@ class endPoint
 
         $result = curl_exec($ch);
         if ($result) {
+            $result = \json_decode($result);
             return $result;
-        }else {
+        } else {
             return \curl_error($ch);
         }
     }
-    public function typer($name)
+    public function typer()
     {
-        return Config::server;
+        return ;
     }
 }
