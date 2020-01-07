@@ -1,5 +1,5 @@
 {
-    "name": "shd/riotapi",
+    "name": "saberhosneydev/riotapi",
     "description": "A php wrapper around RiotAPI using libcurl",
     "license": "MIT",
     "type": "library",
