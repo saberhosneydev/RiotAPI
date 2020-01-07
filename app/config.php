@@ -8,7 +8,7 @@ class Config
     const summonerAPI = "/lol/summoner/v4/summoners/by-name/";
     const matchListAPI = "/lol/match/v4/matchlists/by-account/";
     const matchAPI = "/lol/match/v4/matches/";
-    const API_KEY = "RGAPI-e922ecc2-84e4-4058-8958-a6c5e3eb854a";
+    const API_KEY = "your API_KEY goes here";
     const SERVERS = [
     "BR1" => "br1.api.riotgames.com",
     "EUN1"=> "eun1.api.riotgames.com",
