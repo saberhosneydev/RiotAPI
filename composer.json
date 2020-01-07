@@ -5,13 +5,10 @@
     "type": "library",
     "authors": [
         {
-            "name": "saberhosneydev",
-            "email": "ssaber277@gmail.com"
+            "name": "saberhosneydev"
         }
     ],
-    "require": {
-        "php": "^7.0"
-    },
+    "require": {},
     "autoload": {
         "psr-4": {
             "SHD\\": "app/"
