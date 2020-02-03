@@ -2,7 +2,7 @@
 
 namespace SHD;
 
-class League
+class LeagueAPI
 {
     public function getSummonerInfo($name)
     {
