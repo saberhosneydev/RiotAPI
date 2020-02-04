@@ -8,9 +8,8 @@ use SHD\DDragonAPI as DDragonAPI;
 
 $ddragon = new DDragonAPI;
 $league = new League;
-$config = new Config;
 
-$config->setServer("euw1");
+$league->setServer("euw1");
 
 $summoner = $league->getSummonerInfo("CràpBag");
 

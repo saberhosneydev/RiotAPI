@@ -4,7 +4,7 @@ namespace SHD;
 use SHD\Exception;
 class Config
 {
-    public static $SERVER_NAME = "";
+
     const summonerByNameAPI = "/lol/summoner/v4/summoners/by-name/";
     const summonerByAccountIdAPI = "/lol/summoner/v4/summoners/by-account/";
     const matchListAPI = "/lol/match/v4/matchlists/by-account/";
@@ -26,11 +26,6 @@ class Config
 
     function __construct() {
         self::checkAPIKEY();
-    }
-    public function setServer($serverName)
-    {
-        $serverName = \strtoupper($serverName);
-        self::$SERVER_NAME = $serverName;
     }
     function checkAPIKEY (){
          // Initialize a CURL session.
