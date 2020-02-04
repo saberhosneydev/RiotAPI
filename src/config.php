@@ -5,7 +5,8 @@ use SHD\Exception;
 class Config
 {
     public static $SERVER_NAME = "";
-    const summonerAPI = "/lol/summoner/v4/summoners/by-name/";
+    const summonerByNameAPI = "/lol/summoner/v4/summoners/by-name/";
+    const summonerByAccountIdAPI = "/lol/summoner/v4/summoners/by-account/";
     const matchListAPI = "/lol/match/v4/matchlists/by-account/";
     const matchAPI = "/lol/match/v4/matches/";
     const API_KEY = "RGAPI-909279db-3d2d-43d7-b851-935db9a23f0d";
@@ -34,12 +35,12 @@ class Config
     function checkAPIKEY (){
          // Initialize a CURL session.
         $ch = curl_init();
-        //if the name has special character replace it with unicode version
-        $url = "https://".self::SERVERS['EUW1'].self::summonerAPI."riot"."?api_key=".self::API_KEY;
-        //grab URL and pass it to the variable.
-        curl_setopt($ch, CURLOPT_URL, $url);
         // Return Page contents.
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        //if the name has special character replace it with unicode version
+        $url = "https://".self::SERVERS['EUW1'].self::summonerByNameAPI."riot"."?api_key=".self::API_KEY;
+        //grab URL and pass it to the variable.
+        curl_setopt($ch, CURLOPT_URL, $url);
         //Perform the request and store the result
         $result = curl_exec($ch);
         //check if there's an actual result

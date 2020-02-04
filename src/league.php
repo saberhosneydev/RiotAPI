@@ -10,7 +10,7 @@ class LeagueAPI
         $ch = curl_init();
         $decodedName = \curl_escape($ch, $name);
         //if the name has special character replace it with unicode version
-        $url = "https://".Config::SERVERS[Config::$SERVER_NAME].Config::summonerAPI.$decodedName."?api_key=".Config::API_KEY;
+        $url = "https://".Config::SERVERS[Config::$SERVER_NAME].Config::summonerByNameAPI.$decodedName."?api_key=".Config::API_KEY;
         //grab URL and pass it to the variable.
         curl_setopt($ch, CURLOPT_URL, $url);
         // Return Page contents.
@@ -34,7 +34,7 @@ class LeagueAPI
                     throw new summonerNameException("429");
 
                     default:
-                        echo "Unexpected error happen";
+                    echo "Unexpected error happen";
                     break;
                 }
                 //End Switch
@@ -46,8 +46,42 @@ class LeagueAPI
 
 
     }
-    public function typer()
+    public function getMatchList($name)
     {
-        return ;
+        $accountId =  self::getSummonerInfo($name)->accountId;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $url = "https://".Config::SERVERS[Config::$SERVER_NAME].Config::matchListAPI.$accountId."?api_key=".Config::API_KEY;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        $result = curl_exec($ch);
+        if (!curl_error($ch)) {
+            $result = json_decode($result);
+            return $result;
+        }
+    }
+    public function getLastMatch($name)
+    {
+        $matchId =  self::getMatchList($name)->matches[0]->gameId;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $url = "https://".Config::SERVERS[Config::$SERVER_NAME].Config::matchAPI.$matchId."?api_key=".Config::API_KEY;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        $result = curl_exec($ch);
+        if (!curl_error($ch)) {
+            $result = json_decode($result);
+            return $result;
+        }
+    }
+    function getSummonerId($accountId)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $url = "https://".Config::SERVERS[Config::$SERVER_NAME].Config::summonerByAccountIdAPI.$accountId."?api_key=".Config::API_KEY;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        $result = curl_exec($ch);
+        if (!curl_error($ch)) {
+            $result = json_decode($result);
+            return $result->id;
+        }
     }
 }

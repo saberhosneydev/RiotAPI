@@ -25,6 +25,7 @@ $summoner = $league->getSummonerInfo("CràpBag");
 	if ($summoner) {
 		echo "<h1 class='is-inline title'>Hello, {$summoner->name}, Your Lvl is : $summoner->summonerLevel Account ID : $summoner->accountId</h1>
 		<img class='is-inline' src='{$ddragon->profileIcon($summoner->profileIconId)}' height='64' width='64'>";
+		echo $league->getLastMatch("CràpBag")->seasonId;
 	}
 	?>
 </body>
