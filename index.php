@@ -17,12 +17,15 @@ $summoner = $league->getSummonerInfo("CràpBag");
 ?>
 <!doctype html>
 <html>
-  <head>
-    <title>Hello, world!</title>
-    <link rel="stylesheet" href="./css/bulma.min.css">
-  </head>
-  <body>
-    <h1 class="is-inline title">Hello, <?php echo $summoner->name. " Lvl : ". $summoner->summonerLevel ."Account ID : ".$summoner->accountId;?></h1>
-    <img class="is-inline" src="<?php echo $ddragon->profileIcon($summoner->profileIconId) ?>" height="64" width="64"> 
-  </body>
+<head>
+	<title>Hello, world!</title>
+</head>
+<body>
+	<?php
+	if ($summoner) {
+		echo "<h1 class='is-inline title'>Hello, {$summoner->name}, Your Lvl is : $summoner->summonerLevel Account ID : $summoner->accountId</h1>
+		<img class='is-inline' src='{$ddragon->profileIcon($summoner->profileIconId)}' height='64' width='64'>";
+	}
+	?>
+</body>
 </html>

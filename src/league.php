@@ -1,7 +1,7 @@
 <?php
 
 namespace SHD;
-
+use SHD\Exception;
 class LeagueAPI
 {
     public function getSummonerInfo($name)
@@ -15,14 +15,36 @@ class LeagueAPI
         curl_setopt($ch, CURLOPT_URL, $url);
         // Return Page contents.
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
+        //Perform the request and store the result
         $result = curl_exec($ch);
-        if ($result) {
-            $result = \json_decode($result);
-            return $result;
-        } else {
-            return \curl_error($ch);
+
+        try {
+            if (!curl_error($ch)) {
+                switch ($res_code = curl_getinfo($ch, CURLINFO_HTTP_CODE)) {
+                    case 200:
+                    $result = json_decode($result);
+                    return $result;
+                    break;
+
+                    case 404:
+                    throw new summonerNameException("404");
+                    break;
+
+                    case 429:
+                    throw new summonerNameException("429");
+
+                    default:
+                        echo "Unexpected error happen";
+                    break;
+                }
+                //End Switch
+            }
+        } catch (summonerNameException $e) {
+            echo $e->showError();
+            return false;
         }
+
+
     }
     public function typer()
     {
